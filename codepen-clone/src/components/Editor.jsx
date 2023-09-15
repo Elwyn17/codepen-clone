@@ -49,7 +49,12 @@ function Editor() {
                 <CloseFullscreenIcon />
             </CustomizedHeader>
             <ControlledEditor
-                className="controlled-editor" />
+                className="controlled-editor"
+                options={{
+                    theme: 'material',
+                    lineNumbers: true
+                }}
+            />
         </Box>
     );
 }
