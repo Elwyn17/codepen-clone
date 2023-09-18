@@ -13,6 +13,14 @@ import 'codemirror/mode/css/css';
 
 import '../App.css';
 
+const Container = styled(Box)`
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px 8px;
+`
+
 const CustomizedHeading = styled(Box)`
     background: #1d1e22;
     display: flex;
@@ -27,35 +35,37 @@ const CustomizedHeader = styled(Box)`
     font-weight: 700;
 `;
 
-function Editor() {
+function Editor({ heading, icon, color,value, onChange }) {
     return (
-        <Box>
+        <Container>
             <CustomizedHeader>
                 <CustomizedHeading>
                     <Box component="span"
                     style={{
-                        background: 'red',
+                        background: color,
                         height: 20,
                         width: 20,
                         display: 'flex',
                         placeContent: 'center',
                         borderRadius: 5,
                         marginRight: 5,
-                        paddingBottom: 2
+                        paddingBottom: 2,
+                        color: '#000'
                     }}
-                    >/</Box>
-                    HTML
+                    >{icon}</Box>
+                    {heading}
                 </CustomizedHeading>
                 <CloseFullscreenIcon />
             </CustomizedHeader>
             <ControlledEditor
                 className="controlled-editor"
+                value={value}
                 options={{
                     theme: 'material',
                     lineNumbers: true
                 }}
             />
-        </Box>
+        </Container>
     );
 }
 
