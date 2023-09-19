@@ -11,6 +11,8 @@ import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 
+import { useState } from "react";
+
 import '../App.css';
 
 const Container = styled(Box)`
@@ -35,9 +37,16 @@ const CustomizedHeader = styled(Box)`
     font-weight: 700;
 `;
 
-function Editor({ heading, icon, color,value, onChange }) {
+function Editor({ heading, icon, color, value, onChange }) {
+
+    const [open, setOpen] = useState(true);
+
+    const handleChange = (editor, data, value) => {
+        onChange(value);
+    }
+
     return (
-        <Container>
+        <Container style={ open ? null : {flexGrow: 0}}>
             <CustomizedHeader>
                 <CustomizedHeading>
                     <Box component="span"
@@ -55,11 +64,16 @@ function Editor({ heading, icon, color,value, onChange }) {
                     >{icon}</Box>
                     {heading}
                 </CustomizedHeading>
-                <CloseFullscreenIcon />
+                <CloseFullscreenIcon
+                    fontSize="small"
+                    style={{ alignSelf: 'center' }}
+                    onClick={()=>{setOpen(prevState => !prevState)}}
+                />
             </CustomizedHeader>
             <ControlledEditor
                 className="controlled-editor"
                 value={value}
+                onBeforeChange={handleChange}
                 options={{
                     theme: 'material',
                     lineNumbers: true

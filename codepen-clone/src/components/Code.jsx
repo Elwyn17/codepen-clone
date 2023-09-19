@@ -21,21 +21,21 @@ function Code() {
           icon="/"
           color="#FF3C41"
           value={html}
-          onchange={setHtml}
+          onChange={setHtml}
         />
         <Editor 
           heading="CSS"
           icon="*"
           color="#0EBEFF"
           value={css}
-          onchange={setCss}
+          onChange={setCss}
         />
         <Editor 
           heading="JavaScript"
           icon="()"
           color="#FCD000"
           value={js}
-          onchange={setJs}
+          onChange={setJs}
         />
     </Container>
   )
